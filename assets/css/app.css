@@ -9,8 +9,13 @@ body { }
 /* =============================================================================
    Header
    ========================================================================== */
+#brand { font-size: 2rem;}
 
-#banner { }
+/*.carousel-inner .item {
+  width:80%;
+  margin-left:auto;
+  margin-right:auto;
+}*/
 
 /* Fixed Topbar Navigation */
 body.top-navbar { padding-top: 60px; }
