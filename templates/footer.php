@@ -1,6 +1,22 @@
 <footer id="content-info" class="container" role="contentinfo">
-  <?php dynamic_sidebar('sidebar-footer'); ?>
-  <p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?></p>
+    <?php dynamic_sidebar('sidebar-footer'); ?>
+
+    <div class="row-fluid">
+        <div class="span4">
+        <p>
+        &copy;
+        <?php echo date('Y'); ?>
+        <?php bloginfo('name'); ?></p>
+        </div>
+        <div class="span4">
+            <p>Lorem Ipsum</p>
+        </div>
+        <div class="span4">
+
+        </div>
+
+    </div>
+
 </footer>
 
 <?php if (GOOGLE_ANALYTICS_ID) : ?>

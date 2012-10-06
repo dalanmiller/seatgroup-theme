@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Custom Template
+Template Name: Home PageTemplate
 */
 ?>
 
@@ -21,5 +21,7 @@ Template Name: Custom Template
     <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 </div>
 
-<?php get_template_part('templates/page', 'header'); ?>
-<?php get_template_part('templates/content', 'page'); ?>
+<?php
+// get_template_part('templates/page', 'header');
+get_template_part('templates/content', 'page');
+?>
