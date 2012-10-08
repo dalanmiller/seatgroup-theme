@@ -9,11 +9,15 @@ Template Name: Custom Template
     <div class="carousel-inner">
         <div class="active item">
             <img src="http://placehold.it/1170x300">
-            <div class="carousel-caption"><p>Vini Vidi Veci</p></div>
+            <div class="carousel-caption">
+                <p>Vini Vidi Veci</p>
+            </div>
         </div>
         <div class="item">
             <img src="http://placehold.it/1170x300">
-            <div class="carousel-caption"><p>Vini Vidi Veci</p></div>
+            <div class="carousel-caption">
+                <p>Vini Vidi Veci</p>
+            </div>
         </div>
     </div>
     <!-- Carousel nav -->
@@ -21,5 +25,8 @@ Template Name: Custom Template
     <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 </div>
 
-<?php get_template_part('templates/page', 'header'); ?>
-<?php get_template_part('templates/content', 'page'); ?>
+<?php //get_template_part('templates/page', 'header'); ?>
+
+
+
+<?php //    get_template_part('templates/content', 'page'); ?>
