@@ -6,7 +6,9 @@ body {
   background-image: url('/assets/img/subtle_dots.png');
 }
 
-
+#wrap{
+  margin-top:15px;
+}
 
 
 /* =============================================================================
