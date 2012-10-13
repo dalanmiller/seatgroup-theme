@@ -49,6 +49,9 @@ Template Name: Home PageTemplate
 <div class="row-fluid post-teasers">
     <div class="span3 post-teaser">
         <div class="post-teaser-text">
+            <div class="post-thumb">
+                <img src="http://placehold.it/265x100">
+            </div>
             <div class="header">
                 <h4>Post Title</h4>
             </div>
@@ -59,6 +62,9 @@ Template Name: Home PageTemplate
     </div>
     <div class="span3 post-teaser">
         <div class="post-teaser-text">
+            <div class="post-thumb">
+                <img src="http://placehold.it/265x100">
+            </div>
             <div class="header">
                 <h4>Post Title</h4>
             </div>
@@ -69,8 +75,11 @@ Template Name: Home PageTemplate
     </div>
     <div class="span3 post-teaser">
         <div class="post-teaser-text">
+            <div class="post-thumb">
+                <img src="http://placehold.it/265x100">
+            </div>
             <div class="header">
-                <h4>Post Title</h4>
+                <h4>Title of Post</h4>
             </div>
             <p class="post-teaser-desc">
                 Lorem ipsum bacon ipsumus Lorem ipsum bacon ipsumus Lorem ipsum bacon ipsumus Lorem ipsum bacon ipsumus
@@ -79,6 +88,9 @@ Template Name: Home PageTemplate
     </div>
     <div class="span3 post-teaser">
         <div class="post-teaser-text">
+            <div class="post-thumb">
+                <img src="http://placehold.it/265x100">
+            </div>
             <div class="header">
                 <h4>Post Title</h4>
             </div>

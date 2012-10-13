@@ -50,16 +50,22 @@ body.admin-bar .navbar-fixed-top { top: 28px; }
 }
 .subheroes div{
   padding:4px;
-  border-top:3px solid #F26C4F;
+  border-left:5px solid #3A89C9;
   height:160px;
   text-overflow:ellipsis;
   background-color:white;
-  /*box-shadow: 2px 2px 6px #EDEDED;*/
+  width:100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 @media (min-width: 767px) {
+  .subheroes div{
+    border-bottom:5px solid #3A89C9;
+  }
+
   .subheroes div:nth-child(1){
-    border-left:3px solid #F26C4F;
+    /*border-left:3px solid #F26C4F;*/
   }
 }
 
@@ -79,6 +85,73 @@ body.admin-bar .navbar-fixed-top { top: 28px; }
 
 }
 
+.post-teasers{
+  margin-top:40px;
+  margin-bottom:40px;
+}
+
+.post-teaser{
+  border-left: 2px solid #3A89C9;
+  height:100%;
+  padding:0px 0px 0px 0px;
+  margin-left:2%;
+  /*border-left: 1px solid #F26C4F;*/
+  /*box-shadow: 2px 2px 6px #EDEDED;*/
+  background-color: #3A89C9;
+
+}
+
+@media (max-width: 767px) {
+  .post-teaser{
+    border-bottom:5px solid white;
+  }
+}
+
+.post-teaser .post-thumb{
+  width:100%;
+  height:100px;
+}
+
+.post-teaser img{
+  float:right;
+
+}
+
+.post-teaser-text{
+  text-overflow: ellipsis;
+}
+
+.post-teaser-text .header{
+  color:white;
+  padding:4px 6px;
+
+}
+.post-teaser-text .header h4{
+  margin-top:5px;
+  line-height:14px !important;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+  text-shadow: 0 1px 1px lightgrey;
+  margin-top:5px;
+  display: block;
+}
+
+.post-teaster-test img{
+  float:left;
+  clear:both;
+}
+
+.post-teaser-desc{
+  color:white;
+  font-size:.7rem;
+  width:100%;
+  height:70px;
+  text-overflow: ellipsis;
+  padding:4px;
+  line-height:16px;
+}
+
 
 /* ==========================================================================
    Sidebar
@@ -92,58 +165,83 @@ body.admin-bar .navbar-fixed-top { top: 28px; }
    Posts
    ========================================================================== */
 
-.hentry header { }
-.hentry time { }
-.hentry p.byline { }
-.hentry .entry-content { }
-.hentry footer { }
-
-
-.post-teasers{
-  margin-top:40px;
-  margin-bottom:40px;
+article.hentry{
+  margin-top:20px;
 }
 
-.post-teaser{
-  border-left: 2px solid #3A89C9;
-  height:100%;
-  padding:0px 0px 0px 0px;
-  margin-left:2%;
-  /*border-left: 1px solid #F26C4F;*/
-  /*box-shadow: 2px 2px 6px #EDEDED;*/
+.hentry header {
+  color: #1B325F;
+ }
+ .hentry .entry-title{
+  margin-left:6px;
+ }
+.hentry time {
+  margin-left:14px;
+
+}
+.hentry p.byline {
+  margin-left:14px;
+
+}
+.hentry .entry-content {
+  font-family: "Raleway", sans-serif;
+  background-color:#3A89C9;
+  color:white;
+  padding:12px 20px;
+  font-weight:500;
+ }
+.hentry footer {
+
+}
+
+
+.post {
+  margin-top: 10px;
+  margin-bottom: 20px;
   background-color:white;
+  /*box-shadow:-1px -1px 3px lightgrey;*/
 }
 
-.post-teaser img{
-  float:left;
-  padding:5px;
-}
-
-.post-teaser-text{
-  text-overflow: ellipsis;
-}
-
-.post-teaser-text .header{
+.post .header{
+  width:100%;
+  height:124px;
   background-color: #3A89C9;
   color:white;
-  padding:1px 6px;
-
 }
-.post-teaser-text .header h4{
-  line-height:14px !important;
+
+.post .header h2{
   font-family: "Raleway", sans-serif;
-  font-weight: 400;
-  font-size: 1.1rem;
-  text-shadow: 0 1px 1px lightgrey;
+  font-weight:400;
+  padding-top: 21px;
+  padding-left: 9px;
+  padding-bottom:10px;
+  font-size:2.7rem;
+  margin-bottom:4px;
+
+}
+.post .header p{
+  padding-left: 15px;
+  margin-bottom:2px;
+}
+.post .header .author{
+  font-size:1.1rem;
+}
+.post .header .tags{
+  font-style:italic;
+  font-size:.9rem;
 }
 
-.post-teaser-desc{
-  font-size:.6rem;
-  width:100%;
-  height:90px;
-  text-overflow: ellipsis;
-  padding:4px;
+.post .content{
+  padding:12px;
+  line-height:26px;
 }
+
+/* ==========================================================================
+   Single Post
+   ========================================================================== */
+
+
+
 
 
 /* ==========================================================================
@@ -170,6 +268,7 @@ body.admin-bar .navbar-fixed-top { top: 28px; }
 .footer-wrapper{
   background-color: #9CC4E4;
   width:100%;
+  height:100%;
   box-shadow: 0 -3px 7px rgba(0, 0, 0, 0.09);
 }
 
