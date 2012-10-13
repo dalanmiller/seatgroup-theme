@@ -39,6 +39,8 @@ body.admin-bar .navbar-fixed-top { top: 28px; }
 
 
 
+
+
 /* ==========================================================================
    Primary Content
    ========================================================================== */
@@ -259,6 +261,7 @@ article.hentry{
   background-color: #9CC4E4;
   font-size: .8rem;
   color:white;
+
 }
 
 .footer div{
@@ -268,9 +271,11 @@ article.hentry{
 .footer-wrapper{
   background-color: #9CC4E4;
   width:100%;
+  min-height:100%;
+  height: auto !important;
   height:100%;
-  box-shadow: 0 -3px 7px rgba(0, 0, 0, 0.09);
-}
+  box-shadow: 0 -3px 7px rgba(0, 0, 0, 0.09});
+
 
 
 
