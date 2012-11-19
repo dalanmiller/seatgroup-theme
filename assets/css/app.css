@@ -275,7 +275,46 @@ article.hentry{
   height: auto !important;
   height:100%;
   box-shadow: 0 -3px 7px rgba(0, 0, 0, 0.09});
+}
 
+/* ==========================================================================
+   MAP Scores Tool
+   ========================================================================== */
+
+#map-tool #grade {
+  width:70px;
+}
+
+#map-tool td{
+  text-align:center;
+  vertical-align:middle;
+  font-size:16px;
+}
+
+
+#map-tool td#rate-gro-ftw, td#rate-gro-wts{
+  font-weight:bold;
+}
+
+#map-tool th{
+  text-align:center;
+  font-size:12px;
+  line-height:12px;
+}
+
+#map-tool .semester{
+  font-size:20px;
+  padding-bottom:10px;
+}
+
+#map-tool-buttons{
+  margin-top:15px;
+  margin-bottom:15px;
+}
+
+#map-tool-buttons select,input{
+  margin-bottom:0px;
+}
 
 
 

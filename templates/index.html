@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>WhichBus</title>
+    <link href="<%= image_path("favicon.png") %>" rel="icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <%= stylesheet_link_tag    "transit", :media => "all" %>
+    <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="settings-bg" ></div>
+<div class="navbar navbar-fixed-top unselectable">
+    <div class="navbar-inner">
+        <div class="container-fluid whichbus-nav">
+            <div id="text-logo" class="block left">
+                <a href="/">WhichBus</a>
+            </div>
+            <div class="block right">
+                <!-- <a id="locate" class="icon" href="/nearby" rel="tooltip" title="find me">
+                    <i class="icon-screenshot"></i><label>Locate</label>
+                </a>
+                <a id="directions" class="icon popout" href="#" rel="tooltip" title="get directions" data-popout="Directions">
+                    <i class="icon-map-marker"></i><i class="icon-map-marker"></i>
+                    <label>Directions</label>
+                </a>
+                <a id="search" class="icon popout" href="#" rel="tooltip" title="search transit" data-popout="Search">
+                    <i class="icon-search"></i><label>Search</label>
+                </a> -->
+                <a id="favorites" class="icon popout" href="#" rel="tooltip" title="favorites" data-popout="Favorites">
+                    <i class="icon-heart"></i><label>Favorites</label>
+                </a>
+                <a id="settings" class="icon settings popout" rel="tooltip" title="settings" data-popout="Settings">
+                  <i class="icon-cog"></i><label>Settings</label>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="settings-menu">
+        <header class="blue">
+            <h3>Settings</h3>
+        </header>
+        <div id="settings-search" class="blocked">
+            <input class="search" name="search" type="text" id="search" placeholder="Search Routes &amp; Stops" disabled>
+            <button class="btn btn-go" type="button" disabled>GO</button>
+            <small class="label label-info">IN DEVELOPMENT</small>
+        </div>
+        <div id="settings-list">
+            <ul>
+                <li id="settings-favorites" class="blocked">
+                    <i class="icon-heart"></i>
+                    <span>Favorites</span>
+                    <small class="label label-info">COMING SOON</small></li>
+                <li class="blocked">
+                    <i class="icon-user"></i>
+                    <span>My Account</span>
+                    <small class="label label-info">WAIT FOR IT</small>
+                </li>
+                <li>
+                    <%= link_to '#', id: 'clearCache' do %>
+                        <i class="icon-refresh"></i>
+                        <span>Clear Geocache</span>
+                    <% end %>
+                </li>
+                <li>
+                    <%= link_to '/about/issues' do %>
+                        <i class="icon-comment"></i>
+                        <span>Send Us Feedback</span>
+                    <% end %>
+                </li>
+                <li>
+                    <%= link_to '/about' do %>
+                        <i class="icon-wb-bus"></i>
+                        <span>About WhichBus</span>
+                    <% end %>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<%= yield %>
+
+
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDI_tGrmAMV4wPYDHCbkdOhpSCsYT8dBPI&sensor=true&libraries=geometry"></script>
+
+<%= javascript_include_tag "transit" %>
+<script>
+    $(function() { Transit.init(); });
+</script>
+
+<% if Rails.env.production? %>
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-28348026-3']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+<% end %>
+</body>
+</html>

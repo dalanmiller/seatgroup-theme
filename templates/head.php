@@ -15,6 +15,10 @@
 
   <?php wp_head(); ?>
 
+  <?php if (is_page_template('map-scores-tool-template.php')){
+    echo "<script type='text/javascript' src=" . "/assets/js/map-tool.js></script>";
+  }?>
+
   <?php if (have_posts()) : ?>
   <link rel="alternate" type="application/rss+xml" title="<?php echo get_bloginfo('name') ?> Feed" href="<?php echo home_url() ?>/feed/">
   <?php endif; ?>
