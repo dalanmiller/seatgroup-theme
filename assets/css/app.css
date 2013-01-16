@@ -309,14 +309,29 @@ article.hentry{
 
 #map-tool-buttons{
   margin-top:15px;
-  margin-bottom:15px;
+  margin-bottom:40px;
 }
 
 #map-tool-buttons select,input{
   margin-bottom:0px;
 }
+#map-tool .rit{
+  font-size:12px;
+  text-align:center;
+  margin-left:8px;
+  margin-bottom:0px;
+  width:55px;
+}
+#map-tool .rit-scores{
+  width:250px;
+}
+#map-tool .rit:first-child{
+  margin-left:0px;
+}
 
-
+#map-tool td input,select{
+  margin-bottom:0px;
+}
 
 /* ==========================================================================
    WordPress Generated Classes
@@ -339,4 +354,36 @@ figure.alignnone { margin-left: 0; margin-right: 0; }
   body.top-navbar {
     padding-top: 0;
   }
+}
+
+
+
+/* ==========================================================================
+   d3.js visualization
+   ========================================================================== */
+
+path {
+  stroke: steelblue;
+  stroke-width: 1;
+  fill: none;
+}
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.x.axis line {
+  stroke: lightgrey;
+}
+
+.x.axis .minor {
+  stroke-opacity: .5;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.y.axis line, .y.axis path {
+  fill: none;
+  stroke: #000;
 }
