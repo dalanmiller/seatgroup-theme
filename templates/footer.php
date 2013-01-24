@@ -6,9 +6,10 @@
             <div class="span4">
                 <p>
                     <h5>Contact Us</h5>
-                    1234 Road<br>
-                    Seattle, WA 98111
-
+                    5333 15th AVE S., Suite 1L<br>
+                    Seattle, WA 98108<br>
+                    <br>
+                    <a href="mailto:seatgroupseattle@gmail.com">seatgroupseattle@gmail.com</a>
                 </p>
 
                 <p>
@@ -40,4 +41,9 @@
 </script>
 <?php endif; ?>
 
+<script>
+window.onresize = function(event) {
+    $('.footer-wrapper').width
+}
+</script>
 <?php wp_footer(); ?>

@@ -21,9 +21,6 @@ Template Name: MAP Scores Tool
                 <li class="active">
                     <a href="#tool" data-toggle="tab">Tool</a>
                 </li>
-                <li>
-                    <a href="#analytics" id="analytics-tab" data-toggle="tab">Analytics</a>
-                </li>
             </ul>
 
             <div class="tab-content">
@@ -35,11 +32,11 @@ Template Name: MAP Scores Tool
                                     <label type="select" class="select">
                                         School Year
                                         <select class="school-year span3">
-                                            <option>2011-2012 School Year</option>
-                                            <option>Summer 2012</option>
-                                            <option>2012-2013 School Year</option>
-                                            <option>Summer 2013</option>
-                                            <option>2013-2014 School Year</option>
+                                            <option>Fall 2011 - Spring 2012</option>
+                                            <option>Spring 2012 - Fall 2012</option>
+                                            <option>Fall 2012 - Spring 2013</option>
+                                            <option>Spring 2013 - Fall 2013</option>
+                                            <option>Fall 2013 - Spring 2014</option>
                                         </select>
                                     </label>
                                     <label type="select" class="select">
@@ -141,15 +138,45 @@ Template Name: MAP Scores Tool
                         <button id="add-student" class="btn btn-success"> <i class="icon-plus icon-white"></i>
                             Add student
                         </button>
+                        <button id="remove-student" class="btn btn-danger"><i class="icon-minus icon-white"></i>
+                            Remove Student
+                        </button>
+                        <button id="clear-table" class="btn btn-info"><i class="icon-remove-sign icon-white"></i>
+                            Clear Table
+                        </button>
 
                         <button id="export-data" class="btn btn-info pull-right"> <i class="icon-download icon-white"></i>
                             Export Data
                         </button>
                     </div>
+                    <div id="map-tool-results">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Below Typical Growth*</th>
+                                    <th>At Typical Growth</th>
+                                    <th>Aspirational Growth</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="row-title">Fall to Winter</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="row-title">Winter to Spring</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="tab-pane" id="analytics">
-                    <div id="data-graph"></div>
-                </div>
+
             </div>
         </div>
     </div>

@@ -2,8 +2,13 @@
    Base
    ========================================================================== */
 
+html{
+  height:100%;
+}
+
 body {
   background-image: url('/assets/img/brillant.png');
+  height:100%;
 }
 
 #wrap{
@@ -271,9 +276,11 @@ article.hentry{
 .footer-wrapper{
   background-color: #9CC4E4;
   width:100%;
-  min-height:100%;
+  top:100%;
+  position:absolute;
+  /*min-height:100%;
   height: auto !important;
-  height:100%;
+  height:100%;*/
   box-shadow: 0 -3px 7px rgba(0, 0, 0, 0.09});
 }
 
@@ -331,6 +338,11 @@ article.hentry{
 
 #map-tool td input,select{
   margin-bottom:0px;
+}
+
+/* Styling for the results section at the bottom of the map tool */
+#map-tool-results {
+  margin-top:40px;
 }
 
 /* ==========================================================================

@@ -29,24 +29,24 @@ Template Name: Home PageTemplate
     <div class="span6">
         <h4>What is Seat Group?</h4>
         <p>
-            Candy bonbon toffee fruitcake gummi bears. Jelly beans jelly-o biscuit topping jelly beans wypas jelly beans toffee. Danish icing toffee toffee gummies sesame snaps chupa chups gingerbread jelly.
+            We are a Collaboration of Out-of-School Time Providers located on-site within Seattle Public Schools committed to reducing the K-5 Achievement Gap.
         </p>
     </div>
     <div class="span3">
         <h4>The current state of education</h4>
         <p>
-            Dessert powder icing. Halvah sesame snaps tart. Topping tart macaroon cotton candy croissant fruitcake tootsie roll gummi bears. Chupa chups wypas dragée faworki.
+            Out-of-School Time programs are uniquely positioned to partner with schools and families to reduce the K-5 Achievement Gap. Learning how to do this well while advancing the field of early elementary education is the purpose of SEAT.
         </p>
     </div>
     <div class="span3">
         <h4>How can I help seat group?</h4>
         <p>
-            Dessert powder icing. Halvah sesame snaps tart. Topping tart macaroon cotton candy croissant fruitcake tootsie roll gummi bears. Chupa chups wypas dragée faworki.
+            Check out our Academic Achievement Program and our Data Tools if you are interested in learning how to access and use data for your educational program to identify student need, align learning outcomes, design with intentionality, and track results.
         </p>
     </div>
 </div>
 
-<div class="row-fluid post-teasers">
+<!-- <div class="row-fluid post-teasers">
     <div class="span3 post-teaser">
         <div class="post-teaser-text">
             <div class="post-thumb">
@@ -99,4 +99,4 @@ Template Name: Home PageTemplate
             </p>
         </div>
     </div>
-</div>
+</div> -->
