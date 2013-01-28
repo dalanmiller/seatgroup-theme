@@ -150,7 +150,7 @@ Template Name: MAP Scores Tool
                         </button>
                     </div>
                     <div id="map-tool-results">
-                        <table class="table">
+                        <table class="table table-condensed">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -160,17 +160,17 @@ Template Name: MAP Scores Tool
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr id="first_results" class="results">
                                     <td class="row-title">Fall to Winter</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td class="below"></td>
+                                    <td class="meet"></td>
+                                    <td class="aspir"></td>
                                 </tr>
-                                <tr>
+                                <tr id="second_results" class="results">
                                     <td class="row-title">Winter to Spring</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td class="below"></td>
+                                    <td class="meet"></td>
+                                    <td class="aspir"></td>
                                 </tr>
                             </tbody>
                         </table>

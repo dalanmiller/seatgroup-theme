@@ -4,15 +4,20 @@
 
 html{
   height:100%;
+  margin: 0;
+  padding:0;
 }
 
 body {
   background-image: url('/assets/img/brillant.png');
   height:100%;
+  margin: 0;
+  padding:0;
 }
 
 #wrap{
   margin-top:15px;
+  margin-bottom:30px;
 
 }
 #content{
@@ -269,18 +274,16 @@ article.hentry{
 
 }
 
-.footer div{
-  padding:6px;
-}
 
 .footer-wrapper{
   background-color: #9CC4E4;
   width:100%;
   top:100%;
   position:absolute;
+  bottom:0;
   /*min-height:100%;
-  height: auto !important;
-  height:100%;*/
+  height: auto !important;*/
+  height:200px;
   box-shadow: 0 -3px 7px rgba(0, 0, 0, 0.09});
 }
 
@@ -344,6 +347,33 @@ article.hentry{
 #map-tool-results {
   margin-top:40px;
 }
+#map-tool-results thead > tr > th {
+  text-align:center;
+}
+#map-tool-results tbody > tr > td {
+  text-align:center;
+}
+#map-tool-results tbody tr.results td > span.numera, span.denom{
+  color:#1b1b1b;
+  font-size:24px;
+  vertical-align:middle;
+}
+#map-tool-results tbody tr.results td > span.slash{
+  color:#1b1b1b;
+  font-size:35px;
+  vertical-align:middle;
+}
+/*#map-tool-results tbody tr.results td.below{
+  background-color:#fd3424;
+}
+#map-tool-results tbody tr.results td.meets{
+  background-color:#fd3424;
+}
+#map-tool-results tbody tr.results td.aspir{
+  background-color:#1cc431;
+}*/
+
+
 
 /* ==========================================================================
    WordPress Generated Classes

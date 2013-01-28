@@ -58,6 +58,13 @@ $(document).ready(function(){
         var rit_fall = parseInt(closest_tr.find('.rit-fall').val(), 10);
         var rit_winter = parseInt(closest_tr.find('.rit-winter').val(), 10);
         var rit_spring = parseInt(closest_tr.find('.rit-spring').val(), 10);
+
+
+        //Check if the values are blank, if so, blank all the cores
+        if (isNaN(rit_fall) && isNaN(rit_winter) && isNaN(rit_spring)){
+            $('.initial-display,td#act-gro-ftw,td#rate-gro-ftw,td#likeli-ftw,td#act-gro-wts,td#rate-gro-wts,td#likeli-wts').html('');
+        }
+
         var grade = closest_tr.find('#grade').val();
         var likeli = 0;
 
@@ -143,6 +150,7 @@ $(document).ready(function(){
     };
 
     map_tool.change_rit = function(e){
+        console.log("Changing the rit_type");
         map_tool.rit_type = this.value.toLowerCase();
         console.log('rit-type is now '+this.value.toLowerCase());
 
@@ -151,16 +159,20 @@ $(document).ready(function(){
         } else {
             $('table').find('th.plikelihood').html('% likelihood of meeting<br/>3rd grade standards')
         }
+
+        map_tool.map_table.find('div.rit-scores > input.rit:first').trigger('change');
     };
 
     $('table').delegate('#grade','change',function(){
+        console.log(this.value)
         var close_tr = $(this).closest('tr');
-        close_tr.find('#typ-gro-ftw').html( map_tool.grade_dictionary[this.value][map_tool.reading].ftw );
-        close_tr.find('#typ-gro-wts').html( map_tool.grade_dictionary[this.value][map_tool.reading].wts );
+
+        close_tr.find('#typ-gro-ftw').html( map_tool.grade_dictionary[this.value][map_tool.rit_type].ftw );
+        close_tr.find('#typ-gro-wts').html( map_tool.grade_dictionary[this.value][map_tool.rit_type].wts );
         close_tr.find('#act-gro-ftw input').trigger('input');
         close_tr.find('#act-gro-wts input').trigger('input');
 
-        calculations(this);
+        map_tool.map_table.find('div.rit-scores > input.rit:first').trigger('change');
     });
 
     map_tool.change_school_year = function(e){
@@ -257,9 +269,83 @@ $(document).ready(function(){
             $(this).val('');
         });
 
-        map_tool.sc();
+        map_tool.map_table.find('div.rit-scores > input.rit:first').trigger('change');
     };
 
+
+    map_tool.calculate_total = function(){
+        var total = {
+            'first':{ //For the first time period to time period (Fall to Winter)
+                'below':0,
+                'meet':0,
+                'aspir':0
+            },
+            'second':{ //For the second time period to time period (Winter to Spring)
+                'below':0,
+                'meet':0,
+                'aspir':0
+            },
+            'total':0,
+            'dict':{
+                1:'below',
+                2:'meet',
+                3:'aspir'
+            }
+        };
+        students = map_tool.map_table.find('tbody > tr');
+        students.each(function(s){
+            f_result = parseFloat($(this).find('td#rate-gro-ftw').html(), 10);
+            console.log('f ' + f_result)
+            if (!isNaN(f_result)){
+                if (f_result < 1.0){
+                    total.first.below++;
+                } else if (f_result >= 1.0 && f_result < 1.50 ){
+                    total.first.meet++;
+                } else {
+                    total.first.aspir++;
+                }
+            }
+            s_result = parseFloat($(this).find('td#rate-gro-wts').html(), 10);
+            console.log('s '+ s_result)
+            if (!isNaN(s_result)){
+                if (s_result < 1.0){
+                    total.second.below++;
+                } else if (s_result >= 1.0 && s_result < 1.50 ){
+                    total.second.meet++;
+                } else {
+                    total.second.aspir++;
+                }
+            }
+            total.total++;
+        });
+
+        console.log(total)
+
+        total_rows = $('div#map-tool-results > table > tbody > tr');
+        $(total_rows[0]).children().each(function(d){
+            if (d !== 0){
+                new_html = '<span class="numera">'+total.first[total.dict[d]].toString()+'</span>';
+                new_html += '<span class="slash">/</span>';
+                new_html += '<span class="denom">'+total.total.toString()+'</span>';
+
+                console.log($(this).html());
+                console.log(new_html);
+
+                $(this).html(new_html);
+            }
+        });
+
+        $(total_rows[1]).children().each(function(d){
+            if (d !== 0){
+                new_html = '<span class="numera">'+total.second[total.dict[d]].toString()+'</span>';
+                new_html += '<span class="slash">/</span>';
+                new_html += '<span class="denom">'+total.total.toString()+'</span>';
+                $(this).html(new_html);
+            }
+        });
+
+
+    };
 
     // Listeners
 
@@ -277,6 +363,11 @@ $(document).ready(function(){
     //Clearing all data on table
     $('.map-tool-buttons #clear-table').on('click', map_tool.clear_table);
 
+    //Bind to changing of inputs and addition of students so that the total
+    // results section can be properly calculated.
+    $('.map-tool-buttons #add-student,#remove-student').on('click', map_tool.calculate_total);
+    $('table#map-tool').delegate('.rit-scores > .rit','change', map_tool.calculate_total);
+    $('.rit_type').change(map_tool.calculate_total);
 
     // Make sure that when inputting new data that the student calculations happen
     map_tool.map_table.find('table').on('input', '#act-gro-ftw input', map_tool.sc);
@@ -319,6 +410,7 @@ $(document).ready(function(){
                 "fall"  :39,
                 "winter":29,
                 "spring":22
+            }
         },
         "2nd" : {
             "math" : {
@@ -334,6 +426,7 @@ $(document).ready(function(){
                 "fall"  :23,
                 "winter":16,
                 "spring":10
+            }
         },
         "3rd" : {
             "math" : {
@@ -383,8 +476,6 @@ $(document).ready(function(){
                 "spring":0
             }
         }
-
-        }}
     };
 
     window.map_tool = map_tool;
