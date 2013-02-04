@@ -6,9 +6,9 @@
             <div class="span4">
                 <p>
                     <h5>Contact Us</h5>
+                    SEAT<br>
                     5333 15th AVE S., Suite 1L<br>
                     Seattle, WA 98108<br>
-                    <br>
                     <a href="mailto:seatgroupseattle@gmail.com">seatgroupseattle@gmail.com</a>
                 </p>
 
@@ -19,12 +19,12 @@
             </div>
             <div class="span4">
                 <p>
-                    Chocolate cake pudding jelly chupa chups. Topping halvah sweet chocolate bar biscuit cheesecake topping chocolate caramels. Macaroon ice cream jujubes chocolate bar chupa chups. Dessert lemon drops cookie jelly-o donut chupa chups.
+                    <!-- Second column text -->
                 </p>
             </div>
             <div class="span4">
                 <p>
-                    Chocolate cake pudding jelly chupa chups. Topping halvah sweet chocolate bar biscuit cheesecake topping chocolate caramels. Macaroon ice cream jujubes chocolate bar chupa chups. Dessert lemon drops cookie jelly-o donut chupa chups.
+                    <!-- Third column text -->
                 </p>
             </div>
         </div>

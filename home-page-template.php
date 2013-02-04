@@ -10,13 +10,7 @@ Template Name: Home PageTemplate
         <div class="active item">
             <img src="http://placehold.it/1170x300/fff/dedede">
             <div class="carousel-caption">
-                <p>Vini Vidi Veci</p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="http://placehold.it/1170x300/fff/dedede">
-            <div class="carousel-caption">
-                <p>Veci Vidi Vini</p>
+                <p>Seattle Elementary Alignment Team</p>
             </div>
         </div>
     </div>
@@ -27,9 +21,9 @@ Template Name: Home PageTemplate
 
 <div class="row-fluid subheroes">
     <div class="span6">
-        <h4>What is Seat Group?</h4>
+        <h4>What is SEAT Group?</h4>
         <p>
-            We are a Collaboration of Out-of-School Time Providers located on-site within Seattle Public Schools committed to reducing the K-5 Achievement Gap.
+            We are a Collaboration of Out-of-School Time Providers located on-site within Seattle Public Schools committed to reducing the K-5 Achievement Gap. We began our collective impact efforts in February 2011 and are funded by a Gates Foundation Grant for new initiatives.
         </p>
     </div>
     <div class="span3">
@@ -39,64 +33,10 @@ Template Name: Home PageTemplate
         </p>
     </div>
     <div class="span3">
-        <h4>How can I help seat group?</h4>
+        <h4>How can I get involved?</h4>
         <p>
             Check out our Academic Achievement Program and our Data Tools if you are interested in learning how to access and use data for your educational program to identify student need, align learning outcomes, design with intentionality, and track results.
         </p>
     </div>
 </div>
 
-<!-- <div class="row-fluid post-teasers">
-    <div class="span3 post-teaser">
-        <div class="post-teaser-text">
-            <div class="post-thumb">
-                <img src="http://placehold.it/265x100">
-            </div>
-            <div class="header">
-                <h4>Post Title</h4>
-            </div>
-            <p class="post-teaser-desc">
-                Lorem ipsum bacon ipsumus Lorem ipsum bacon ipsumus Lorem ipsum bacon ipsumus Lorem ipsum bacon ipsumus
-            </p>
-        </div>
-    </div>
-    <div class="span3 post-teaser">
-        <div class="post-teaser-text">
-            <div class="post-thumb">
-                <img src="http://placehold.it/265x100">
-            </div>
-            <div class="header">
-                <h4>Post Title</h4>
-            </div>
-            <p class="post-teaser-desc">
-                Lorem ipsum bacon ipsumus Lorem ipsum bacon ipsumus Lorem ipsum bacon ipsumus Lorem ipsum bacon ipsumus
-            </p>
-        </div>
-    </div>
-    <div class="span3 post-teaser">
-        <div class="post-teaser-text">
-            <div class="post-thumb">
-                <img src="http://placehold.it/265x100">
-            </div>
-            <div class="header">
-                <h4>Title of Post</h4>
-            </div>
-            <p class="post-teaser-desc">
-                Lorem ipsum bacon ipsumus Lorem ipsum bacon ipsumus Lorem ipsum bacon ipsumus Lorem ipsum bacon ipsumus
-            </p>
-        </div>
-    </div>
-    <div class="span3 post-teaser">
-        <div class="post-teaser-text">
-            <div class="post-thumb">
-                <img src="http://placehold.it/265x100">
-            </div>
-            <div class="header">
-                <h4>Post Title</h4>
-            </div>
-            <p class="post-teaser-desc">
-                Lorem ipsum bacon ipsumus Lorem ipsum bacon ipsumus Lorem ipsum bacon ipsumus Lorem ipsum bacon ipsumus
-            </p>
-        </div>
-    </div>
-</div> -->

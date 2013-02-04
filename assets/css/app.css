@@ -2,22 +2,23 @@
    Base
    ========================================================================== */
 
-html{
+/*html{
   height:100%;
   margin: 0;
   padding:0;
 }
-
+*/
 body {
   background-image: url('/assets/img/brillant.png');
-  height:100%;
+/*  height:100%;
   margin: 0;
   padding:0;
-}
+*/}
 
 #wrap{
   margin-top:15px;
   margin-bottom:30px;
+  min-height:768px;
 
 }
 #content{
@@ -39,6 +40,11 @@ body {
 body.top-navbar { padding-top: 60px; }
 body.admin-bar .navbar-fixed-top { top: 28px; }
 
+
+/*header#banner div.navbar-inner */
+.container > .brand {
+  padding: 20px 12px 20px;
+}
 
 
 /* ==========================================================================
@@ -278,11 +284,6 @@ article.hentry{
 .footer-wrapper{
   background-color: #9CC4E4;
   width:100%;
-  top:100%;
-  position:absolute;
-  bottom:0;
-  /*min-height:100%;
-  height: auto !important;*/
   height:200px;
   box-shadow: 0 -3px 7px rgba(0, 0, 0, 0.09});
 }
