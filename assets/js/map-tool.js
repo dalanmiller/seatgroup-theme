@@ -8,8 +8,9 @@ $(document).ready(function(){
     map_tool = {};
 
     map_tool.students = [];
-    map_tool.rit_type = 'reading';
-    map_tool.map_table = $('table#map-tool');
+    map_tool.rit_type = 'reading'; // Alternates between this and 'math'
+    map_tool.time_period = 'school-year'; // Alternates between this and 'summer'
+    map_tool.map_table = $('table#map-tool'); //This jQuery selector is used so much that it would probably be bad to not have a shortcut for it.
 
 
     // Functions
@@ -29,6 +30,27 @@ $(document).ready(function(){
                 return 'green';
             }
     };
+
+    map_tool.likeli_label = function(value){
+
+        value_frmt = value.toFixed(1)+'%'
+
+        if (value < 20){
+                return '<span class="label label-important">'+value_frmt+'</span>'
+            } else if (value < 40){
+                return '<span class="label label-warning">'+value_frmt+'</span>'
+                // return 'orange';
+            } else if (value < 60){
+                return '<span class="label" style="background-color:#FAFA00; color:#F5F5F5; text-shadow:1px 1px 4px grey;">'+value_frmt+'</span>'
+                // return 'yellow';
+            } else if (value < 80){
+                return '<span class="label" style="background-color:#75D654; color:#F5F5F5">'+value_frmt+'</span>'
+                // return 'lime';
+            } else if (value <= 100){
+                return '<span class="label label-success">'+value_frmt+'</span>'
+                // return 'green';
+            }
+    }
 
     map_tool.reading_likelihood = function(x){
 
@@ -51,6 +73,15 @@ $(document).ready(function(){
         }
     };
 
+    map_tool.likelihood_calculator = function(type, rit_score){
+        if (type == 'reading'){
+            return map_tool.reading_likelihood(rit_score);
+        } else if (type == 'math'){
+            return map_tool.math_likelihood(rit_score);
+        }
+
+    };
+
     map_tool.adjust_scores = function(e){
         /* Handles the major parts of inputting numbers and listening to changes */
 
@@ -66,70 +97,66 @@ $(document).ready(function(){
         }
 
         var grade = closest_tr.find('#grade').val();
+
+
         var likeli = 0;
 
         if( !isNaN(rit_fall)){
 
             var init_display = closest_tr.find('.initial-display');
 
-            var grade_likeli_adj = map_tool.grade_dictionary[grade].fall;
+            //Check if type is math or reading and return appropriate percentage
+            likeli = map_tool.likelihood_calculator(map_tool.rit_type, rit_fall);
 
-            // Check if the rit_type is reading or math and calculate appropriately
-            if (rit_type == 'reading'){
-                likeli = map_tool.reading_likelihood(rit_fall);
-            } else {
-                likeli = map_tool.math_likelihood(rit_fall);
-            }
+            init_display.html(map_tool.likeli_label(likeli));
 
-            init_display.html(likeli.toFixed(1) + '%');
-
-            // Use the map_tool color function to change color of text
-            init_display.css('color', map_tool.likeli_color(likeli));
         }
 
         if (!isNaN(rit_winter)){
 
             var likeli_ele = closest_tr.find('#likeli-ftw');
-            if (rit_type == 'reading'){
-                likeli = map_tool.reading_likelihood(rit_winter);
-            } else {
-                likeli = map_tool.math_likelihood(rit_winter);
-            }
+
+            //Check if type is math or reading and return appropriate percentage
+            likeli = map_tool.likelihood_calculator(map_tool.rit_type, rit_winter);
 
             if (!isNaN(rit_fall)){
                 actual_growth = (rit_winter - rit_fall);
                 closest_tr.find('#act-gro-ftw').html( actual_growth );
 
-                closest_tr.find('#rate-gro-ftw').html( (actual_growth / map_tool.grade_dictionary[grade][rit_type].ftw).toFixed(1) );
+                closest_tr.find('#rate-gro-ftw').html( (actual_growth / map_tool.grade_dictionary[grade][map_tool.rit_type].ftw).toFixed(1) );
             }
 
-            likeli_ele.html(likeli.toFixed(1) + '%');
-
-            // Use the map_tool color function to change color of text
-            likeli_ele.css('color', map_tool.likeli_color(likeli));
-
+            likeli_ele.html(map_tool.likeli_label(likeli));
 
         }
         if (!isNaN(rit_spring)){
 
             var likeli_ele = closest_tr.find('#likeli-wts');
-            if (rit_type == 'reading'){
-                likeli = map_tool.reading_likelihood(rit_spring);
-            } else {
-                likeli = map_tool.math_likelihood(rit_spring);
-            }
+
+            //Check if type is math or reading and return appropriate percentage
+            likeli = map_tool.likelihood_calculator(map_tool.rit_type, rit_spring);
 
             if (!isNaN(rit_winter)){
                 actual_growth = (rit_spring - rit_winter);
                 closest_tr.find('#act-gro-wts').html( actual_growth );
 
-                closest_tr.find('#rate-gro-wts').html( (actual_growth / map_tool.grade_dictionary[grade][rit_type].wts).toFixed(1) );
+                closest_tr.find('#rate-gro-wts').html( (actual_growth / map_tool.grade_dictionary[grade][map_tool.rit_type].wts).toFixed(1) );
             }
 
-            likeli_ele.html(likeli.toFixed(1) + '%');
-
-            likeli_ele.css('color', map_tool.likeli_color(likeli));
+            likeli_ele.html(map_tool.likeli_label(likeli));
         }
+
+        //If fourth or fifth grade, grey out the likelihood percentages to denote that they don't apply as much. Since the testing ends in 4th grade.
+        // If statement captures if the rit_type is math and grade is 4th or 5th or if rit_type is reading and grade is 4th or 5th.
+
+        if ( (map_tool.rit_type == 'math' && (grade == '4th' || grade == '5th')) || (map_tool.rit_type == 'reading' && (grade == '4th' || grade == '5th') )) {
+            $('.initial-display,#likeli-ftw,#likeli-wts').each(function(d){
+
+                $(this).find('span').removeClass('label-important label-success label-info label-warning');
+
+            });
+        }
+
     };
 
     map_tool.add_student = function(e){
@@ -152,12 +179,12 @@ $(document).ready(function(){
     map_tool.change_rit = function(e){
         console.log("Changing the rit_type");
         map_tool.rit_type = this.value.toLowerCase();
-        console.log('rit-type is now '+this.value.toLowerCase());
+        console.log('rit-type is now '+map_tool.rit_type);
 
         if(map_tool.rit_type == 'math'){
-            $('table').find('th.plikelihood').html('% likelihood of meeting<br/>4th grade standards')
+            $('table').find('th.plikelihood').html('% likelihood of meeting<br/>4th grade standards');
         } else {
-            $('table').find('th.plikelihood').html('% likelihood of meeting<br/>3rd grade standards')
+            $('table').find('th.plikelihood').html('% likelihood of meeting<br/>3rd grade standards');
         }
 
         map_tool.map_table.find('div.rit-scores > input.rit:first').trigger('change');
@@ -181,7 +208,7 @@ $(document).ready(function(){
         map_tool.school_year = school_year;
 
         /*Check if 'spring' is at the beginning of the string*/
-        if(school_year.search('spring') === 0){
+        if(school_year.search('summer') === 0){
             map_tool.map_table.find('div.rit-scores.controls').children().each(function(n){
                 if($(this).attr('placeholder') == 'Fall'){
                     $(this).attr('placeholder', 'Spring');
@@ -208,7 +235,16 @@ $(document).ready(function(){
                 }
 
             });
-        } else if (school_year.search('fall') === 0){
+            map_tool_res = $('div#map-tool-results');
+
+            map_tool_res.find('.school-year').css('display','none');
+            map_tool_res.find('.summer').css('display','table');
+
+            //Flip master toggle
+            map_tool.time_period = 'summer';
+
+
+        } else if (school_year.search(/[\d]{4}  /i) === 0){
             map_tool.map_table.find('div.rit-scores.controls').children().each(function(n){
                 if($(this).attr('placeholder') == 'Spring'){
                     $(this).attr('placeholder', 'Fall');
@@ -236,11 +272,21 @@ $(document).ready(function(){
                 }
 
             });
+
+            map_tool_res = $('div#map-tool-results');
+
+            map_tool_res.find('.school-year').css('display','table');
+            map_tool_res.find('.summer').css('display','none');
+
+            //Flip master toggle
+            map_tool.time_period = 'school-year';
+
         }
     };
 
     map_tool.sc = function(e){
         var suffix = this.parentElement.id.slice(-3);
+        console.log('Parent Element: '+this.parentElement)
         var ag = '#act-gro-'+suffix;
         var tg = '#typ-gro-'+suffix;
         var rg = '#rate-gro-'+suffix;
@@ -274,77 +320,120 @@ $(document).ready(function(){
 
 
     map_tool.calculate_total = function(){
-        var total = {
-            'first':{ //For the first time period to time period (Fall to Winter)
-                'below':0,
-                'meet':0,
-                'aspir':0
-            },
-            'second':{ //For the second time period to time period (Winter to Spring)
-                'below':0,
-                'meet':0,
-                'aspir':0
-            },
-            'total':0,
-            'dict':{
-                1:'below',
-                2:'meet',
-                3:'aspir'
-            }
-        };
-        students = map_tool.map_table.find('tbody > tr');
-        students.each(function(s){
-            f_result = parseFloat($(this).find('td#rate-gro-ftw').html(), 10);
-            console.log('f ' + f_result)
-            if (!isNaN(f_result)){
-                if (f_result < 1.0){
-                    total.first.below++;
-                } else if (f_result >= 1.0 && f_result < 1.50 ){
-                    total.first.meet++;
-                } else {
-                    total.first.aspir++;
+
+
+        //If the current time period is school-year and not summer calculation.
+        if (map_tool.time_period == 'school-year'){
+            var total = {
+                'first':{ //For the first time period to time period (Fall to Winter)
+                    'below':0,
+                    'meet':0,
+                    'aspir':0
+                },
+                'second':{ //For the second time period to time period (Winter to Spring)
+                    'below':0,
+                    'meet':0,
+                    'aspir':0
+                },
+                'total':0, // Total students
+                'dict':{
+                    1:'below',
+                    2:'meet',
+                    3:'aspir'
+                },
+                'html': {
+                    1:'<span class="label label-important">!</span>',
+                    2:'<span class="label label-info">!</span>',
+                    3:'<span class="label label-success">!</span>'
                 }
-            }
-            s_result = parseFloat($(this).find('td#rate-gro-wts').html(), 10);
-            console.log('s '+ s_result)
-            if (!isNaN(s_result)){
-                if (s_result < 1.0){
-                    total.second.below++;
-                } else if (s_result >= 1.0 && s_result < 1.50 ){
-                    total.second.meet++;
-                } else {
-                    total.second.aspir++;
+
+            };
+
+            //Go through each student (row) and calculate the totals
+            students = map_tool.map_table.find('tbody > tr');
+            students.each(function(s){
+                f_result = parseFloat($(this).find('td#rate-gro-ftw').html(), 10);
+                console.log('f ' + f_result);
+                if (!isNaN(f_result)){
+                    if (f_result < 1.0){
+                        total.first.below++;
+                    } else if (f_result >= 1.0 && f_result < 1.50 ){
+                        total.first.meet++;
+                    } else {
+                        total.first.aspir++;
+                    }
                 }
-            }
-            total.total++;
-        });
 
-        console.log(total)
+                s_result = parseFloat($(this).find('td#rate-gro-wts').html(), 10);
+                console.log('s '+ s_result);
+                if (!isNaN(s_result)){
+                    if (s_result < 1.0){
+                        total.second.below++;
+                    } else if (s_result >= 1.0 && s_result < 1.50 ){
+                        total.second.meet++;
+                    } else {
+                        total.second.aspir++;
+                    }
+                }
 
-        total_rows = $('div#map-tool-results > table > tbody > tr');
-        $(total_rows[0]).children().each(function(d){
-            if (d !== 0){
-                new_html = '<span class="numera">'+total.first[total.dict[d]].toString()+'</span>';
-                new_html += '<span class="slash">/</span>';
-                new_html += '<span class="denom">'+total.total.toString()+'</span>';
+                //Only add to total if both values exist and thus sufficient data is provided for this student
+                if (!isNaN(s_result) && !isNaN(f_result)){
+                    total.total++;
+                }
 
-                console.log($(this).html());
-                console.log(new_html);
+            });
 
-                $(this).html(new_html);
-            }
-        });
-
-        $(total_rows[1]).children().each(function(d){
-            if (d !== 0){
-                new_html = '<span class="numera">'+total.second[total.dict[d]].toString()+'</span>';
-                new_html += '<span class="slash">/</span>';
-                new_html += '<span class="denom">'+total.total.toString()+'</span>';
-                $(this).html(new_html);
-            }
-        });
+            total_rows = $('div#map-tool-results > table > tbody > tr');
 
 
+            $('#map-tool-results .n1').html(total.total);
+
+            $(total_rows[0]).children().each(function(d){
+                if (d !== 0){
+                    new_html = total.html[d].replace('!', total.first[total.dict[d]].toString() );
+                    new_html += '<br>';
+                    new_html += total.html[d].replace('!', (total.first[total.dict[d]] / total.total).toFixed(1) * 100 + '%' );
+
+                    $(this).html(new_html);
+                }
+            });
+
+            $('#map-tool-results .n2').html(total.total);
+
+            $(total_rows[1]).children().each(function(d){
+                if (d !== 0){
+
+                    new_html = total.html[d].replace('!',total.second[total.dict[d]].toString() );
+                    new_html += '<br>';
+                    new_html += total.html[d].replace('!', (total.second[total.dict[d]] / total.total).toFixed(1) * 100 + '%');
+
+                    $(this).html(new_html);
+                }
+            });
+
+
+        } else if( map_tool.time_period == 'summer' ){
+
+            var total = {
+                'summer':{ //For the first time period to time period (Fall to Winter)
+                    'loss':0,
+                    'retain':0,
+                    'growth':0
+                },
+                'total':0, // Total students
+                'dict':{
+                    1:'loss',
+                    2:'retain',
+                    3:'growth'
+                }
+            };
+
+            students = map_tool.map_table.find('tbody > tr');
+            students.each(function(s){
+                console.log(s);
+            });
+        }
+        // console.log(total);
     };
 
     // Listeners
@@ -380,13 +469,13 @@ $(document).ready(function(){
 
     map_tool.grade_dictionary = {
 
-        "K" : {
-            "math" : {
-                "ftw"   :7.0,
-                "wts"   :8.4,
-                "fall"  :69,
-                "winter":62,
-                "spring":53
+        "K" : {  //Kindergarten
+            "math" : { //Math
+                "ftw"   :7.0, //Fall to Winter
+                "wts"   :8.4, //Winter to Spring
+                "fall"  :69,  //Fall
+                "winter":62,  //Winter
+                "spring":53   //Spring
             },
             "reading" : {
                 "ftw"   :8.5,

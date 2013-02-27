@@ -354,16 +354,21 @@ article.hentry{
 #map-tool-results tbody > tr > td {
   text-align:center;
 }
-#map-tool-results tbody tr.results td > span.numera, span.denom{
+/*#map-tool-results tbody tr.results td > span.numera, span.denom{
   color:#1b1b1b;
   font-size:24px;
-  vertical-align:middle;
+  vertical-align:middle;*/
 }
-#map-tool-results tbody tr.results td > span.slash{
+#map-tool-results tbody tr.results span {
   color:#1b1b1b;
-  font-size:35px;
+  font-size:15px;
   vertical-align:middle;
 }
+
+#map-tool-results .summer {
+  display:none;
+}
+
 /*#map-tool-results tbody tr.results td.below{
   background-color:#fd3424;
 }
