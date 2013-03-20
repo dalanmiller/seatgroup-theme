@@ -32,15 +32,15 @@ Template Name: MAP Scores Tool
                                     <label type="select" class="select">
                                         School Year
                                         <select class="school-year span3">
-                                            <option>Fall 2011 - Spring 2012</option>
-                                            <option>Spring 2012 - Fall 2012</option>
-                                            <option>Fall 2012 - Spring 2013</option>
-                                            <option>Spring 2013 - Fall 2013</option>
-                                            <option>Fall 2013 - Spring 2014</option>
+                                            <option>2011 - 2012</option>
+                                            <option>Summer 2012</option>
+                                            <option>2012 - 2013</option>
+                                            <option>Summer 2013</option>
+                                            <option>2013 - 2014</option>
                                         </select>
                                     </label>
                                     <label type="select" class="select">
-                                        RIT Type
+                                        Test Subject
                                         <select class="rit-type wspan2">
                                             <option>Reading</option>
                                             <option>Math</option>
@@ -145,12 +145,12 @@ Template Name: MAP Scores Tool
                             Clear Table
                         </button>
 
-                        <button id="export-data" class="btn btn-info pull-right"> <i class="icon-download icon-white"></i>
+                        <button id="export-data" class="btn btn-info pull-right disabled"> <i class="icon-download icon-white"></i>
                             Export Data
                         </button>
                     </div>
                     <div id="map-tool-results">
-                        <table class="table table-condensed">
+                        <table class="school-year table table-condensed">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -161,18 +161,37 @@ Template Name: MAP Scores Tool
                             </thead>
                             <tbody>
                                 <tr id="first_results" class="results">
-                                    <td class="row-title">Fall to Winter</td>
+                                    <td class="row-title label">Fall to Winter<br>n=<span class="n1">0</span></td>
                                     <td class="below"></td>
                                     <td class="meet"></td>
                                     <td class="aspir"></td>
                                 </tr>
                                 <tr id="second_results" class="results">
-                                    <td class="row-title">Winter to Spring</td>
+                                    <td class="row-title label">Winter to Spring<br>n=<span class="n2">0</span></td>
                                     <td class="below"></td>
                                     <td class="meet"></td>
                                     <td class="aspir"></td>
                                 </tr>
                             </tbody>
+                        </table>
+                        <table class="summer table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Summer Learning Loss</th>
+                                    <th>Summer Learning Retention</th>
+                                    <th>Summer Growth</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="first_results" class="results">
+                                    <td class="row-title">Spring to Fall Growth</td>
+                                    <td class="loss"></td>
+                                    <td class="retented"></td>
+                                    <td class="growth"></td>
+                                </tr>
+                            </tbody>
+
                         </table>
                     </div>
                 </div>
