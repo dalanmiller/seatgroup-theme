@@ -16,3 +16,5 @@ require_once locate_template('/lib/scripts.php');         // Scripts and stylesh
 require_once locate_template('/lib/post-types.php');      // Custom post types
 require_once locate_template('/lib/metaboxes.php');       // Custom metaboxes
 require_once locate_template('/lib/custom.php');          // Custom functions
+
+add_image_size('homepage-hero', 940, 300, TRUE);

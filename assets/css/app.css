@@ -46,6 +46,10 @@ body.admin-bar .navbar-fixed-top { top: 28px; }
   padding: 20px 12px 20px;
 }
 
+.carousel-caption p a{
+  text-decoration:none;
+  color:#fff;
+}
 
 /* ==========================================================================
    Content
