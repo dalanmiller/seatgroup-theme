@@ -11,7 +11,7 @@ Template Name: Home PageTemplate
             <div class="carousel-inner">
 
                 <?php
-                    query_posts('cat=1');
+                    query_posts(array ( 'category_name' => 'homepage', 'posts_per_page' => 5 ));
                     if (have_posts()):
                         $first = True;
                         while (have_posts()):

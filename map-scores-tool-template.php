@@ -157,6 +157,7 @@ Template Name: MAP Scores Tool
                                     <th>Below Typical Growth*</th>
                                     <th>At Typical Growth</th>
                                     <th>Aspirational Growth</th>
+                                    <th>Students with <br/> Incomplete Data</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -165,12 +166,14 @@ Template Name: MAP Scores Tool
                                     <td class="below"></td>
                                     <td class="meet"></td>
                                     <td class="aspir"></td>
+                                    <td class="inc_1"></td>
                                 </tr>
                                 <tr id="second_results" class="results">
                                     <td class="row-title label">Winter to Spring<br>n=<span class="n2">0</span></td>
                                     <td class="below"></td>
                                     <td class="meet"></td>
                                     <td class="aspir"></td>
+                                    <td class="inc_2"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -179,8 +182,7 @@ Template Name: MAP Scores Tool
                                 <tr>
                                     <th></th>
                                     <th>Summer Learning Loss</th>
-                                    <th>Summer Learning Retention</th>
-                                    <th>Summer Growth</th>
+                                    <th>Summer Learning Retention/Growth</th>
                                 </tr>
                             </thead>
                             <tbody>

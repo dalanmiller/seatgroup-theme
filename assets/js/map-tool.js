@@ -23,7 +23,7 @@ $(function(){
             } else if (value < 40){
                 return 'orange';
             } else if (value < 60){
-                return 'yellow';
+                return '#b53e2e';
             } else if (value < 80){
                 return 'lime';
             } else if (value <= 100){
@@ -41,7 +41,7 @@ $(function(){
                 return '<span class="label label-warning">'+value_frmt+'</span>'
                 // return 'orange';
             } else if (value < 60){
-                return '<span class="label" style="background-color:#FAFA00; color:#F5F5F5; text-shadow:1px 1px 4px grey;">'+value_frmt+'</span>'
+                return '<span class="label" style="background-color:#ffc629; color:#F5F5F5; text-shadow:1px 1px 4px grey;">'+value_frmt+'</span>'
                 // return 'yellow';
             } else if (value < 80){
                 return '<span class="label" style="background-color:#75D654; color:#F5F5F5">'+value_frmt+'</span>'
@@ -92,9 +92,9 @@ $(function(){
 
 
         //Check if the values are blank, if so, blank all the cores
-        if (isNaN(rit_fall) && isNaN(rit_winter) && isNaN(rit_spring)){
-            $('.initial-display,td#act-gro-ftw,td#rate-gro-ftw,td#likeli-ftw,td#act-gro-wts,td#rate-gro-wts,td#likeli-wts').html('');
-        }
+        // if (isNaN(rit_fall) && isNaN(rit_winter) && isNaN(rit_spring)){
+        //     $('.initial-display,td#act-gro-ftw,td#rate-gro-ftw,td#likeli-ftw,td#act-gro-wts,td#rate-gro-wts,td#likeli-wts').html('');
+        // }
 
         var grade = closest_tr.find('#grade').val();
 
@@ -109,8 +109,13 @@ $(function(){
             likeli = map_tool.likelihood_calculator(map_tool.rit_type, rit_fall);
 
             init_display.html(map_tool.likeli_label(likeli));
-
+        } else {
+            closest_tr.find('.initial-display').html('');
+            closest_tr.find('#act-gro-ftw').html('');
+            closest_tr.find('#rate-gro-ftw').html('');
+            closest_tr.find('#likeli-ftw').html('');
         }
+
 
         if (!isNaN(rit_winter)){
 
@@ -127,8 +132,13 @@ $(function(){
             }
 
             likeli_ele.html(map_tool.likeli_label(likeli));
-
+        } else {
+            closest_tr.find('#act-gro-wts').html('');
+            closest_tr.find('#rate-gro-wts').html('');
+            closest_tr.find('#likeli-wts').html('');
         }
+
+
         if (!isNaN(rit_spring)){
 
             var likeli_ele = closest_tr.find('#likeli-wts');
@@ -144,6 +154,10 @@ $(function(){
             }
 
             likeli_ele.html(map_tool.likeli_label(likeli));
+        } else {
+            closest_tr.find('#act-gro-wts').html('');
+            closest_tr.find('#rate-gro-wts').html('');
+            closest_tr.find('#likeli-wts').html('');
         }
 
         //If fourth or fifth grade, grey out the likelihood percentages to denote that they don't apply as much. Since the testing ends in 4th grade.
@@ -213,16 +227,14 @@ $(function(){
                 if($(this).attr('placeholder') == 'Fall'){
                     $(this).attr('placeholder', 'Spring');
                 } else if ($(this).attr('placeholder') == 'Winter'){
-                    $(this).attr('placeholder', 'Summer');
+                    $(this).attr('placeholder', 'Spring');
                 } else if ($(this).attr('placeholder') == 'Spring'){
                     $(this).attr('placeholder', 'Fall');
                 }
             });
             map_tool.map_table.find('th.semester').each(function(){
-                if($(this).html() == 'Fall'){
+                if ($(this).html() == 'Winter'){
                     $(this).html('Spring');
-                } else if ($(this).html() == 'Winter'){
-                    $(this).html('Summer');
                 } else if ($(this).html() == 'Spring'){
                     $(this).html('Fall');
                 }
@@ -231,7 +243,7 @@ $(function(){
                 if($(this).html() =='Fall to Winter'){
                     $(this).html('Spring to Summer');
                 } else {
-                    $(this).html('Summer to Fall');
+                    $(this).html('Spring to Fall');
                 }
 
             });
@@ -239,6 +251,15 @@ $(function(){
 
             map_tool_res.find('.school-year').css('display','none');
             map_tool_res.find('.summer').css('display','table');
+
+
+            map_tool.map_table.find('td:nth-child(4)').hide()
+            trs = map_tool.map_table.find('tr')
+            $($(trs[0]).find('th')[1]).hide()
+            $($(trs[1]).find('th')[3]).hide()
+
+
+            map_tool.map_table.find('.rit-fall').hide()
 
             //Flip master toggle
             map_tool.time_period = 'summer';
@@ -256,27 +277,37 @@ $(function(){
             });
 
             map_tool.map_table.find('th.semester').each(function(){
-                if($(this).html() == 'Spring'){
-                    $(this).html('Fall');
-                } else if ($(this).html() == 'Summer'){
+                if ($(this).html() == 'Spring'){
                     $(this).html('Winter');
                 } else if ($(this).html() == 'Fall'){
                     $(this).html('Spring');
                 }
             });
+
+            var a = [
+                    'Fall to Winter',
+                    'Winter to Spring',
+                    'Students with Incomplete Data'
+                ];
+            var x = 0
             $('div#map-tool-results td.row-title').each(function(){
-                if($(this).html() =='Spring to Summer'){
-                    $(this).html('Fall to Winter');
-                } else {
-                    $(this).html('Winter to Spring');
-                }
+
+                $(this).html(a[x]);
+                x+=1;
 
             });
+
+            map_tool.map_table.find('td:nth-child(4)').show()
+            trs = map_tool.map_table.find('tr')
+            $($(trs[0]).find('th')[1]).show()
+            $($(trs[1]).find('th')[3]).show()
 
             map_tool_res = $('div#map-tool-results');
 
             map_tool_res.find('.school-year').css('display','table');
             map_tool_res.find('.summer').css('display','none');
+
+            map_tool.map_table.find('.rit-fall').show()
 
             //Flip master toggle
             map_tool.time_period = 'school-year';
@@ -285,14 +316,17 @@ $(function(){
     };
 
     map_tool.sc = function(e){
+        alert('wtf sc')
+        console.log('Running SC function');
         var suffix = this.parentElement.id.slice(-3);
-        console.log('Parent Element: '+this.parentElement)
+        console.log('Parent Element: '+this.parentElement);
         var ag = '#act-gro-'+suffix;
         var tg = '#typ-gro-'+suffix;
         var rg = '#rate-gro-'+suffix;
         var typical = $(this).closest('tr').find( tg ).html();
         var rate_gro_ftw = $(this).closest('tr').find( rg );
         if(!isNaN(parseInt(this.value, 10)) && this.value !== null){
+            console.log('omg '+this.value)
             var calc = parseFloat(this.value) / parseFloat(typical);
             rate_gro_ftw.html(
                 calc.toString().slice(0,4).concat('%')
@@ -320,7 +354,7 @@ $(function(){
 
 
     map_tool.calculate_total = function(){
-
+        console.log('Calculating Total');
 
         //If the current time period is school-year and not summer calculation.
         if (map_tool.time_period == 'school-year'){
@@ -328,59 +362,86 @@ $(function(){
                 'first':{ //For the first time period to time period (Fall to Winter)
                     'below':0,
                     'meet':0,
-                    'aspir':0
+                    'aspir':0,
+                    'incomplete':0,
+                    'total':0
                 },
                 'second':{ //For the second time period to time period (Winter to Spring)
                     'below':0,
                     'meet':0,
-                    'aspir':0
+                    'aspir':0,
+                    'incomplete':0, //students without total data
+                    'total':0 // Total students
                 },
-                'total':0, // Total students
                 'dict':{
                     1:'below',
                     2:'meet',
-                    3:'aspir'
+                    3:'aspir',
+                    4:'incomplete'
                 },
                 'html': {
                     1:'<span class="label label-important">!</span>',
                     2:'<span class="label label-info">!</span>',
-                    3:'<span class="label label-success">!</span>'
+                    3:'<span class="label label-success">!</span>',
+                    4:'<span class="label label-inverse">!</span>'
                 }
 
             };
 
             //Go through each student (row) and calculate the totals
             students = map_tool.map_table.find('tbody > tr');
+            // console.log('students array - '+students.length)
+            // console.log(students)
             students.each(function(s){
-                f_result = parseFloat($(this).find('td#rate-gro-ftw').html(), 10);
-                console.log('f ' + f_result);
-                if (!isNaN(f_result)){
-                    if (f_result < 1.0){
-                        total.first.below++;
-                    } else if (f_result >= 1.0 && f_result < 1.50 ){
-                        total.first.meet++;
-                    } else {
-                        total.first.aspir++;
+
+                //IF there is no value in the fall input field then the student data for the first section
+                // is incomplete, otherwise need to calculate where the student is at for this section
+                // and categorize him/her in below, meeting, or aspiring.
+                if ( $(this).find('.rit.rit-fall').val() === ""){
+                    total.first.incomplete++;
+                } else {
+                    f_result = parseFloat($(this).find('td#rate-gro-ftw').html(), 10);
+                    console.log('f ' + f_result);
+                    if (!isNaN(f_result)){
+                        if (f_result < 1.0){
+                            total.first.below++;
+                        } else if (f_result >= 1.0 && f_result < 1.50 ){
+                            total.first.meet++;
+                        } else {
+                            total.first.aspir++;
+                        }
                     }
+                    //Increment total number
+                    total.first.total++;
                 }
 
-                s_result = parseFloat($(this).find('td#rate-gro-wts').html(), 10);
-                console.log('s '+ s_result);
-                if (!isNaN(s_result)){
-                    if (s_result < 1.0){
-                        total.second.below++;
-                    } else if (s_result >= 1.0 && s_result < 1.50 ){
-                        total.second.meet++;
-                    } else {
-                        total.second.aspir++;
+                //IF there is no value in the winter AND spring input fields then the student data for the second section
+                // is incomplete, otherwise need to calculate where the student is at for this section
+                // and categorize him/her in below, meeting, or aspiring.
+                if ( $(this).find('.rit.rit-winter').val() === "" || $(this).find('.rit.rit-spring').val() === "" ){
+                    total.second.incomplete++;
+                } else {
+                    s_result = parseFloat($(this).find('td#rate-gro-wts').html(), 10);
+                    console.log('s '+ s_result);
+                    if (!isNaN(s_result)){
+                        if (s_result < 1.0){
+                            total.second.below++;
+                        } else if (s_result >= 1.0 && s_result < 1.50 ){
+                            total.second.meet++;
+                        } else {
+                            total.second.aspir++;
+                        }
                     }
+                    //Increment total number
+                    total.second.total++;
                 }
 
-                //Only add to total if both values exist and thus sufficient data is provided for this student
-                if (!isNaN(s_result) && !isNaN(f_result)){
-                    total.total++;
-                }
 
+
+
+                console.log('Logging S:'+s);
+                console.log('Logging This:'+$(this));
+                console.log(total)
             });
 
             total_rows = $('div#map-tool-results > table > tbody > tr');
@@ -389,10 +450,13 @@ $(function(){
             $('#map-tool-results .n1').html(total.total);
 
             $(total_rows[0]).children().each(function(d){
-                if (d !== 0){
+                if (d === 4){
+                    new_html = total.html[d].replace('!', total.first.incomplete.toString() );
+                    $(this).html(new_html);
+                } else if (d !== 0){
                     new_html = total.html[d].replace('!', total.first[total.dict[d]].toString() );
                     new_html += '<br>';
-                    new_html += total.html[d].replace('!', (total.first[total.dict[d]] / total.total).toFixed(1) * 100 + '%' );
+                    new_html += total.html[d].replace('!', (total.first[total.dict[d]] / total.first.total).toFixed(2) * 100 + '%' );
 
                     $(this).html(new_html);
                 }
@@ -401,15 +465,22 @@ $(function(){
             $('#map-tool-results .n2').html(total.total);
 
             $(total_rows[1]).children().each(function(d){
-                if (d !== 0){
+                if (d === 4){
+                    new_html = total.html[d].replace('!', total.second.incomplete.toString() );
+                    $(this).html(new_html);
+                } else if (d !== 0){
 
                     new_html = total.html[d].replace('!',total.second[total.dict[d]].toString() );
                     new_html += '<br>';
-                    new_html += total.html[d].replace('!', (total.second[total.dict[d]] / total.total).toFixed(1) * 100 + '%');
+                    new_html += total.html[d].replace('!', (total.second[total.dict[d]] / total.second.total).toFixed(2) * 100 + '%');
 
                     $(this).html(new_html);
                 }
             });
+
+            // $($(total_rows[2]).children()[1]).html(
+            //     total.html[2].replace('!', total.incomplete.toString())
+            // );
 
 
         } else if( map_tool.time_period == 'summer' ){
