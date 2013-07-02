@@ -12,7 +12,6 @@ $(function(){
     map_tool.time_period = 'school-year'; // Alternates between this and 'summer'
     map_tool.map_table = $('table#map-tool'); //This jQuery selector is used so much that it would probably be bad to not have a shortcut for it.
 
-
     // Functions
 
     map_tool.likeli_color = function(value){
@@ -53,7 +52,6 @@ $(function(){
     }
 
     map_tool.reading_likelihood = function(x){
-
         if (x < 150){
             return 0;
         } else if (x > 230){
@@ -89,7 +87,6 @@ $(function(){
         var rit_fall = parseInt(closest_tr.find('.rit-fall').val(), 10);
         var rit_winter = parseInt(closest_tr.find('.rit-winter').val(), 10);
         var rit_spring = parseInt(closest_tr.find('.rit-spring').val(), 10);
-
 
         //Check if the values are blank, if so, blank all the cores
         // if (isNaN(rit_fall) && isNaN(rit_winter) && isNaN(rit_spring)){
@@ -165,9 +162,7 @@ $(function(){
 
         if ( (map_tool.rit_type == 'math' && (grade == '4th' || grade == '5th')) || (map_tool.rit_type == 'reading' && (grade == '4th' || grade == '5th') )) {
             $('.initial-display,#likeli-ftw,#likeli-wts').each(function(d){
-
                 $(this).find('span').removeClass('label-important label-success label-info label-warning');
-
             });
         }
 
@@ -222,7 +217,8 @@ $(function(){
         map_tool.school_year = school_year;
 
         /*Check if 'spring' is at the beginning of the string*/
-        if(school_year.search('summer') === 0){
+        if(school_year.search('summer') === 0 && map_tool.time_period !== 'summer'){
+            console.log('switching to summer!')
             map_tool.map_table.find('div.rit-scores.controls').children().each(function(n){
                 if($(this).attr('placeholder') == 'Fall'){
                     $(this).attr('placeholder', 'Spring');
@@ -250,7 +246,7 @@ $(function(){
             map_tool_res = $('div#map-tool-results');
 
             map_tool_res.find('.school-year').css('display','none');
-            map_tool_res.find('.summer').css('display','table');
+            // map_tool_res.find('.summer').css('display','table');
 
 
             map_tool.map_table.find('td:nth-child(4)').hide()
@@ -265,7 +261,8 @@ $(function(){
             map_tool.time_period = 'summer';
 
 
-        } else if (school_year.search(/[\d]{4}/i) === 0){
+        } else if (school_year.search(/[\d]{4}/i) === 0 && map_tool.time_period !== 'school-year'){
+            console.log('switching to year!')
             map_tool.map_table.find('div.rit-scores.controls').children().each(function(n){
                 if($(this).attr('placeholder') == 'Spring'){
                     $(this).attr('placeholder', 'Fall');
@@ -316,17 +313,13 @@ $(function(){
     };
 
     map_tool.sc = function(e){
-        alert('wtf sc')
-        console.log('Running SC function');
         var suffix = this.parentElement.id.slice(-3);
-        console.log('Parent Element: '+this.parentElement);
         var ag = '#act-gro-'+suffix;
         var tg = '#typ-gro-'+suffix;
         var rg = '#rate-gro-'+suffix;
         var typical = $(this).closest('tr').find( tg ).html();
         var rate_gro_ftw = $(this).closest('tr').find( rg );
         if(!isNaN(parseInt(this.value, 10)) && this.value !== null){
-            console.log('omg '+this.value)
             var calc = parseFloat(this.value) / parseFloat(typical);
             rate_gro_ftw.html(
                 calc.toString().slice(0,4).concat('%')
@@ -436,12 +429,6 @@ $(function(){
                     total.second.total++;
                 }
 
-
-
-
-                console.log('Logging S:'+s);
-                console.log('Logging This:'+$(this));
-                console.log(total)
             });
 
             total_rows = $('div#map-tool-results > table > tbody > tr');
@@ -500,6 +487,7 @@ $(function(){
             };
 
             students = map_tool.map_table.find('tbody > tr');
+            console.log(students);
             students.each(function(s){
                 console.log(s);
             });
